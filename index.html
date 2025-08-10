@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Trainer / Gym Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff5733;
+        }
+
+        section {
+            padding: 3rem 5%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #ff5733;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.2rem;
+            background: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #e14e2b;
+        }
+
+        footer {
+            text-align: center;
+            background: #111;
+            color: white;
+            padding: 1rem;
+        }
+
+        /* Responsive Nav */
+        @media(max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vtech Fitness Gym</h1>
+        <nav>
+            <ul>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#trainers">Trainers</a></li>
+                <li><a href="#plans">Membership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="classes">
+        <h2>Our Classes</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="images/Yoga _Class.jpeg" alt="Yoga Class">
+                <h3>Yoga</h3>
+                <p>Improve flexibility and reduce stress with our relaxing yoga sessions.</p>
+            </div>
+            <div class="card">
+                <img src="images/Cardio_Class.jpeg" alt="Cardio Class">
+                <h3>Cardio</h3>
+                <p>Boost your stamina with high-energy cardio workouts.</p>
+            </div>
+            <div class="card">
+                <img src="images/Strength Training.jpeg" alt="Strength Training">
+                <h3>Strength Training</h3>
+                <p>Build muscle and gain strength with expert guidance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainers">
+        <h2>Meet Our Trainers</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
+                <h3>John Doe</h3>
+                <p>Certified personal trainer with 10 years of experience in bodybuilding.</p>
+            </div>
+            <div class="card">
+                <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
+                <h3>Sarah Lee</h3>
+                <p>Specialist in yoga and pilates for mind and body balance.</p>
+            </div>
+            <div class="card">
+                <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
+                <h3>Mike Smith</h3>
+                <p>Expert in HIIT and functional training for maximum results.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans">
+        <h2>Membership Plans</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Basic Plan</h3>
+                <p>$20/month</p>
+                <p>Access to all gym equipment and locker room.</p>
+                <a href="#" class="btn">Join Now</a>
+            </div>
+            <div class="card">
+                <h3>Standard Plan</h3>
+                <p>$40/month</p>
+                <p>Includes Basic Plan + group classes and sauna access.</p>
+                <a href="#" class="btn">Join Now</a>
+            </div>
+            <div class="card">
+                <h3>Premium Plan</h3>
+                <p>$60/month</p>
+                <p>Includes Standard Plan + personal trainer sessions.</p>
+                <a href="#" class="btn">Join Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form style="max-width: 500px; margin: auto;">
+            <input type="text" placeholder="Your Name" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <textarea placeholder="Your Message" style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Elite Fitness Gym. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
