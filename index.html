@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Trainer / Gym Website</title>
+    <title>Vtech Fitness | Gym</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -23,31 +24,61 @@
             color: white;
             padding: 1rem;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
+        nav {
+            background: #111;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff5733;
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
         nav ul {
             display: flex;
             justify-content: center;
             list-style: none;
+            transition: max-height 0.4s ease;
         }
-
         nav ul li {
             margin: 0 15px;
         }
-
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
-
         nav ul li a:hover {
             color: #ff5733;
         }
 
         section {
             padding: 3rem 5%;
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
@@ -88,11 +119,13 @@
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s ease;
+            transition: background 0.3s, transform 0.3s;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255,87,51,0.1);
         }
-
         .btn:hover {
             background: #e14e2b;
+            transform: scale(1.05);
         }
 
         footer {
@@ -103,29 +136,266 @@
         }
 
         /* Responsive Nav */
-        @media(max-width: 768px) {
+        @media(max-width: 900px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
             nav ul {
                 flex-direction: column;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                background: #111;
+            }
+            nav ul.open {
+                max-height: 500px;
+                padding-bottom: 1rem;
+            }
+            .nav-toggle {
+                display: block;
             }
             nav ul li {
                 margin: 10px 0;
             }
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.07);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .testimonial {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            max-width: 350px;
+            flex: 1 1 250px;
+            text-align: center;
+            position: relative;
+        }
+        .testimonial .fa-quote-left {
+            color: #ff5733;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+        }
+        .testimonial .fa-quote-right {
+            color: #ff5733;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+        }
+        .testimonial img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+        .testimonial h4 {
+            margin: 0.5rem 0 0.2rem 0;
+            color: #ff5733;
+        }
+        .testimonial p {
+            font-style: italic;
+        }
+
+        /* Blog */
+        .blog {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .blog-post {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+        .blog-post h3 {
+            color: #ff5733;
+        }
+        .blog-post .date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            margin: 1rem 0;
+        }
+        .social-links a {
+            color: #ff5733;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: #e14e2b;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #ff5733;
+            outline: none;
+        }
+
+        /* Schedule Table */
+        .schedule-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+        .schedule-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            margin: 2rem 0 0 0;
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #ddd;
+            padding: 0.7rem;
+            text-align: center;
+        }
+        .schedule-table th {
+            background: #ff5733;
+            color: #fff;
+        }
+        .schedule-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        @media (max-width: 700px) {
+            .schedule-table {
+                font-size: 0.95rem;
+                min-width: 500px;
+            }
+        }
+
+        /* Animations for call-to-action */
+        .cta {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,87,51,0.3); }
+            70% { box-shadow: 0 0 0 10px rgba(255,87,51,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,87,51,0); }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Vtech Fitness Gym</h1>
-        <nav>
-            <ul>
-                <li><a href="#classes">Classes</a></li>
-                <li><a href="#trainers">Trainers</a></li>
-                <li><a href="#plans">Membership</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="nav-container">
+            <span class="nav-logo">Vtech Fitness</span>
+            <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+            <nav>
+                <ul>
+                    <li><a href="#classes">Classes</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#trainers">Trainers</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#plans">Membership</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+    <!-- Social Media Links -->
+    <div class="social-links" style="text-align:center;">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <section id="schedule">
+        <h2>Class Schedule</h2>
+        <div class="schedule-table-wrapper">
+            <table class="schedule-table">
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+                <tr>
+                    <td>7:00 - 8:00</td>
+                    <td>Yoga</td>
+                    <td>Cardio</td>
+                    <td>Strength</td>
+                    <td>Yoga</td>
+                    <td>Cardio</td>
+                    <td>HIIT</td>
+                </tr>
+                <tr>
+                    <td>8:30 - 9:30</td>
+                    <td>HIIT</td>
+                    <td>Yoga</td>
+                    <td>Cardio</td>
+                    <td>Strength</td>
+                    <td>Yoga</td>
+                    <td>CrossFit</td>
+                </tr>
+                <tr>
+                    <td>18:00 - 19:00</td>
+                    <td>Strength</td>
+                    <td>HIIT</td>
+                    <td>Yoga</td>
+                    <td>Cardio</td>
+                    <td>CrossFit</td>
+                    <td>Yoga</td>
+                </tr>
+            </table>
+        </div>
+    </section>
 
     <section id="classes">
         <h2>Our Classes</h2>
@@ -155,16 +425,60 @@
                 <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
                 <h3>John Doe</h3>
                 <p>Certified personal trainer with 10 years of experience in bodybuilding.</p>
+                <p><strong>Specialties:</strong> Bodybuilding, Nutrition, Weight Loss</p>
+                <a href="#contact" class="btn cta">Book a Session</a>
             </div>
             <div class="card">
                 <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
                 <h3>Sarah Lee</h3>
                 <p>Specialist in yoga and pilates for mind and body balance.</p>
+                <p><strong>Specialties:</strong> Yoga, Pilates, Flexibility</p>
+                <a href="#contact" class="btn cta">Book a Session</a>
             </div>
             <div class="card">
                 <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
                 <h3>Mike Smith</h3>
                 <p>Expert in HIIT and functional training for maximum results.</p>
+                <p><strong>Specialties:</strong> HIIT, Functional Training, Endurance</p>
+                <a href="#contact" class="btn cta">Book a Session</a>
+            </div>
+        </div>
+    </section>
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <img src="images/Yoga _Class.jpeg" alt="Yoga Class">
+            <img src="images/Cardio_Class.jpeg" alt="Cardio Class">
+            <img src="images/Strength Training.jpeg" alt="Strength Training">
+            <img src="images/CrossFit Exercise.jpeg" alt="CrossFit">
+            <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
+            <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
+            <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
+        </div>
+    </section>
+    <section id="testimonials">
+        <h2>What Our Members Say</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <i class="fas fa-quote-left"></i>
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client 1">
+                <p>"Vtech Fitness has changed my life! The trainers are so motivating and the classes are fun."</p>
+                <h4>Jane A.</h4>
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="testimonial">
+                <i class="fas fa-quote-left"></i>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 2">
+                <p>"Great equipment, friendly staff, and a welcoming environment. Highly recommend!"</p>
+                <h4>Michael B.</h4>
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="testimonial">
+                <i class="fas fa-quote-left"></i>
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client 3">
+                <p>"I love the variety of classes and the flexible schedule. There's something for everyone."</p>
+                <h4>Lisa C.</h4>
+                <i class="fas fa-quote-right"></i>
             </div>
         </div>
     </section>
@@ -174,38 +488,110 @@
         <div class="grid">
             <div class="card">
                 <h3>Basic Plan</h3>
-                <p>$20/month</p>
-                <p>Access to all gym equipment and locker room.</p>
-                <a href="#" class="btn">Join Now</a>
+                <p><strong>$20/month</strong></p>
+                <ul style="text-align:left; margin: 0 0 1rem 0;">
+                    <li>Access to all gym equipment</li>
+                    <li>Locker room access</li>
+                    <li>Open gym hours</li>
+                </ul>
+                <a href="#contact" class="btn cta">Join Now</a>
             </div>
             <div class="card">
                 <h3>Standard Plan</h3>
-                <p>$40/month</p>
-                <p>Includes Basic Plan + group classes and sauna access.</p>
-                <a href="#" class="btn">Join Now</a>
+                <p><strong>$40/month</strong></p>
+                <ul style="text-align:left; margin: 0 0 1rem 0;">
+                    <li>Everything in Basic</li>
+                    <li>Group classes</li>
+                    <li>Sauna access</li>
+                </ul>
+                <a href="#contact" class="btn cta">Join Now</a>
             </div>
             <div class="card">
                 <h3>Premium Plan</h3>
-                <p>$60/month</p>
-                <p>Includes Standard Plan + personal trainer sessions.</p>
-                <a href="#" class="btn">Join Now</a>
+                <p><strong>$60/month</strong></p>
+                <ul style="text-align:left; margin: 0 0 1rem 0;">
+                    <li>Everything in Standard</li>
+                    <li>Personal trainer sessions</li>
+                    <li>Nutrition consultation</li>
+                </ul>
+                <a href="#contact" class="btn cta">Join Now</a>
             </div>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact Us</h2>
-        <form style="max-width: 500px; margin: auto;">
-            <input type="text" placeholder="Your Name" style="width: 100%; padding: 10px; margin-bottom: 10px;">
-            <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; margin-bottom: 10px;">
-            <textarea placeholder="Your Message" style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
-            <button type="submit" class="btn">Send Message</button>
+        <form class="contact-form" onsubmit="return validateForm(event)">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn cta">Send Message</button>
+            <div id="form-msg" style="margin-top:10px;color:#ff5733;"></div>
         </form>
+    </section>
+    <section id="blog">
+        <h2>Fitness Blog & News</h2>
+        <div class="blog">
+            <div class="blog-post">
+                <h3>5 Tips for Staying Motivated</h3>
+                <div class="date">August 1, 2025</div>
+                <p>Discover how to keep your fitness journey on track with these simple motivation hacks.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            <div class="blog-post">
+                <h3>Benefits of Group Classes</h3>
+                <div class="date">July 20, 2025</div>
+                <p>Group classes can boost your results and make workouts more fun. Find out why!</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            <div class="blog-post">
+                <h3>Meet Our New Trainer: Sarah Lee</h3>
+                <div class="date">July 10, 2025</div>
+                <p>We're excited to welcome Sarah Lee to our team. Learn more about her expertise in yoga and pilates.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Elite Fitness Gym. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy;2025 Vtech Fitness Gym. All Rights Reserved.</p>
     </footer>
+</body>
+<script>
+// Collapsible nav for mobile
+const navToggle = document.querySelector('.nav-toggle');
+const navUl = document.querySelector('nav ul');
+navToggle.addEventListener('click', () => {
+    navUl.classList.toggle('open');
+});
+
+// Contact form validation and feedback
+function validateForm(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const msgDiv = document.getElementById('form-msg');
+    if (!name || !email || !message) {
+        msgDiv.textContent = 'Please fill in all fields.';
+        return false;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        msgDiv.textContent = 'Please enter a valid email address.';
+        return false;
+    }
+    msgDiv.textContent = 'Thank you for contacting us! We will get back to you soon.';
+    event.target.reset();
+    return false;
+}
+</script>
+</html>
 
 </body>
 </html>
