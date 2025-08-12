@@ -58,6 +58,7 @@
         <a href="#" title="YouTube"><i class="fa-brands fa-square-youtube"></i></a>
     </div>
     
+    <!-- Classes we offer -->
     <section id="classes">
         <h2>Our Classes</h2>
         <div class="grid">
@@ -122,47 +123,54 @@
         </div>
     </section>
 
+    <!-- Meet our trainers  -->
     <section id="trainers">
         <h2>Meet Our Trainers</h2>
         <div class="grid">
             <div class="card">
                 <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
-                <h3>John Doe</h3>
+                <h3>Valentine Attoh</h3>
                 <p>Certified personal trainer with 10 years of experience in bodybuilding.</p>
                 <p><strong>Specialties:</strong> Bodybuilding, Nutrition, Weight Loss</p>
                 <a href="#contact" class="btn cta">Book a Session</a>
             </div>
             <div class="card">
                 <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
-                <h3>Sarah Lee</h3>
+                <h3>Valentine Attoh</h3>
                 <p>Specialist in yoga and pilates for mind and body balance.</p>
                 <p><strong>Specialties:</strong> Yoga, Pilates, Flexibility</p>
                 <a href="#contact" class="btn cta">Book a Session</a>
             </div>
             <div class="card">
                 <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
-                <h3>Mike Smith</h3>
+                <h3>Valentine Attoh</h3>
                 <p>Expert in HIIT and functional training for maximum results.</p>
                 <p><strong>Specialties:</strong> HIIT, Functional Training, Endurance</p>
                 <a href="#contact" class="btn cta">Book a Session</a>
             </div>
         </div>
     </section>
+
+    <!-- Gym gallary -->
     <section id="gallery">
         <h2>Gallery</h2>
-        <div class="gallery">
-            <img src="images/Yoga _Class.jpeg" alt="Yoga Class">
-            <img src="images/Cardio_Class.jpeg" alt="Cardio Class">
-            <img src="images/Strength Training.jpeg" alt="Strength Training">
-            <img src="images/CrossFit Exercise.jpeg" alt="CrossFit">
-            <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
-            <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
-            <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
-            <img src="images/Strength Training.jpeg" alt="Strength Training">
-            <img src="images/CrossFit Exercise.jpeg" alt="CrossFit">
-            <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
-            <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
-            <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
+        <div class="gallery-slider-wrapper">
+            <button class="gallery-arrow left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+            <div class="gallery gallery-slider">
+                <img src="images/Yoga _Class.jpeg" alt="Yoga Class">
+                <img src="images/Cardio_Class.jpeg" alt="Cardio Class">
+                <img src="images/Strength Training.jpeg" alt="Strength Training">
+                <img src="images/CrossFit Exercise.jpeg" alt="CrossFit">
+                <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
+                <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
+                <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
+                <img src="images/Strength Training.jpeg" alt="Strength Training">
+                <img src="images/CrossFit Exercise.jpeg" alt="CrossFit">
+                <img src="images/imagesTrainer 1.jpeg" alt="Trainer 1">
+                <img src="images/imagesTrainer 2.jpeg" alt="Trainer 2">
+                <img src="images/imagesTrainer 3.jpeg" alt="Trainer 3">
+            </div>
+            <button class="gallery-arrow right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
@@ -325,12 +333,12 @@ themeToggle.addEventListener('click', () => {
     const isDark = document.body.classList.contains('dark-mode');
     setTheme(isDark ? 'light' : 'dark');
 });
-// On load, set theme from localStorage or system preference
+// On load, set theme from localStorage or default to light mode
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     setTheme(savedTheme);
-} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
+} else {
+    setTheme('light');
 }
 
 // Contact form validation and feedback
@@ -352,8 +360,21 @@ function validateForm(event) {
     event.target.reset();
     return false;
 }
+
+// Gallery slider for mobile
+const gallery = document.querySelector('.gallery-slider');
+const leftBtn = document.querySelector('.gallery-arrow.left');
+const rightBtn = document.querySelector('.gallery-arrow.right');
+function scrollGallery(direction) {
+    if (!gallery) return;
+    const scrollAmount = gallery.offsetWidth * 0.7;
+    gallery.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+}
+if (leftBtn && rightBtn && gallery) {
+    leftBtn.addEventListener('click', () => scrollGallery(-1));
+    rightBtn.addEventListener('click', () => scrollGallery(1));
+}
 </script>
-</html>
 
 </body>
 </html>
