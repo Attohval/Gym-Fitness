@@ -167,6 +167,10 @@ footer {
     color: var(--header-text);
     padding: 1rem;
 }
+.privacy {
+    display: flex;justify-content: center;
+    flex-wrap: wrap;
+}
 
 /* Responsive Nav */
 @media(max-width: 1024px) {
@@ -352,6 +356,7 @@ footer {
 /* Social Links */
 .social-links {
     margin: 1rem 0;
+    
 }
 .social-links a {
     color: var(--accent);
@@ -452,6 +457,9 @@ footer {
     }
     .address {
         padding: 0 5%;
+    }
+    .privacy {
+        flex-direction: column;
     }
 }
 
