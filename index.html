@@ -18,7 +18,7 @@
                 </button>
             </div>
 
-            <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+            <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars" id="nav-toggle-icon"></i></button>
             <nav>
                 <ul>
                     <li><a href="#classes">Classes</a></li>
@@ -272,11 +272,20 @@
     </footer>
 </body>
 <script>
-// Collapsible nav for mobile
+
+// Collapsible nav for mobile with icon toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navUl = document.querySelector('nav ul');
+const navToggleIcon = document.getElementById('nav-toggle-icon');
 navToggle.addEventListener('click', () => {
     navUl.classList.toggle('open');
+    if (navUl.classList.contains('open')) {
+        navToggleIcon.classList.remove('fa-bars');
+        navToggleIcon.classList.add('fa-xmark');
+    } else {
+        navToggleIcon.classList.remove('fa-xmark');
+        navToggleIcon.classList.add('fa-bars');
+    }
 });
 
 // Dark/Light mode toggle
